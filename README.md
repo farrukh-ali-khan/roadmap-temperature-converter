@@ -17,7 +17,7 @@ A responsive web application that converts temperatures between Celsius, Fahrenh
 
 ## Live Demo
 
-[View Live Demo](https://farrukh-ali-khan.github.io/roadmap-tabs/)
+[View Live Demo](https://farrukh-ali-khan.github.io/roadmap-temperature-converter/)
 
 ## Project Page
 
