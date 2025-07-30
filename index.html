@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Temperature Converter - Free Online Celsius, Fahrenheit & Kelvin
+      Conversion Tool
+    </title>
+    <meta
+      name="description"
+      content="Convert temperatures instantly with our free online tool! Convert between Celsius, Fahrenheit, and Kelvin with precision. Simple, fast, and accurate temperature conversion."
+    />
+    <meta
+      name="keywords"
+      content="temperature converter, celsius to fahrenheit, fahrenheit to celsius, kelvin converter, online temperature conversion, temperature calculator"
+    />
+    <meta name="author" content="Farrukh Ali Khan" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://farrukh-ali-khan.github.io/roadmap-tabs/"
+    />
+    <meta
+      property="og:title"
+      content="Free Online Temperature Converter Tool"
+    />
+    <meta
+      property="og:description"
+      content="Convert between Celsius, Fahrenheit and Kelvin instantly with our easy-to-use temperature conversion tool."
+    />
+    <meta
+      property="og:image"
+      content="https://farrukh-ali-khan.github.io/roadmap-tabs/og-image.jpg"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:url"
+      content="https://farrukh-ali-khan.github.io/roadmap-tabs/"
+    />
+    <meta
+      property="twitter:title"
+      content="Free Online Temperature Converter Tool"
+    />
+    <meta
+      property="twitter:description"
+      content="Convert between Celsius, Fahrenheit and Kelvin instantly with our easy-to-use temperature conversion tool."
+    />
+    <meta
+      property="twitter:image"
+      content="https://farrukh-ali-khan.github.io/roadmap-tabs/twitter-image.jpg"
+    />
+
+    <!-- Canonical URL -->
+    <link
+      rel="canonical"
+      href="https://farrukh-ali-khan.github.io/roadmap-tabs/"
+    />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌡️</text></svg>"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1>
+          <i class="fas fa-thermometer-half"></i> Temperature Converter Pro
+        </h1>
+        <p>Convert between Fahrenheit, Celsius, and Kelvin units instantly</p>
+      </header>
+
+      <main class="main-content">
+        <section class="converter-section">
+          <div class="input-group">
+            <label for="temperature-input">Enter Temperature:</label>
+            <div class="input-field">
+              <input
+                type="number"
+                id="temperature-input"
+                placeholder="Enter temperature value..."
+                step="any"
+              />
+            </div>
+          </div>
+
+          <div class="unit-selectors">
+            <div class="unit-box" id="from-unit-box">
+              <label for="from-unit">From Unit:</label>
+              <select id="from-unit" class="unit-select">
+                <option value="">Select a unit</option>
+                <option value="celsius" selected>Celsius (°C)</option>
+                <option value="fahrenheit">Fahrenheit (°F)</option>
+                <option value="kelvin">Kelvin (K)</option>
+              </select>
+            </div>
+
+            <div class="arrow">
+              <i class="fas fa-exchange-alt"></i>
+            </div>
+
+            <div class="unit-box" id="to-unit-box">
+              <label for="to-unit">To Unit:</label>
+              <select id="to-unit" class="unit-select">
+                <option value="">Select a unit</option>
+                <option value="celsius">Celsius (°C)</option>
+                <option value="fahrenheit" selected>Fahrenheit (°F)</option>
+                <option value="kelvin">Kelvin (K)</option>
+              </select>
+            </div>
+          </div>
+
+          <button id="convert-btn" class="convert-btn">
+            <i class="fas fa-sync-alt"></i> Convert Temperature
+          </button>
+
+          <div class="result-container">
+            <h3>Conversion Result:</h3>
+            <div id="result" class="result">34° Celsius = 93.2° Fahrenheit</div>
+
+            <div class="temperature-info">
+              <div class="temperature-scale">
+                <h4>Absolute Zero</h4>
+                <p>-273.15°C</p>
+              </div>
+              <div class="temperature-scale">
+                <h4>Water Freezes</h4>
+                <p>0°C / 32°F</p>
+              </div>
+              <div class="temperature-scale">
+                <h4>Water Boils</h4>
+                <p>100°C / 212°F</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="info-section">
+          <h2>Temperature Conversion Formulas</h2>
+
+          <div class="common-temps">
+            <div class="conversion-formula">
+              <h3>Celsius to Fahrenheit</h3>
+              <p><span class="formula">°F = (°C × 9/5) + 32</span></p>
+              <p>Example: Convert 20°C to Fahrenheit</p>
+              <p><span class="formula">(20 × 9/5) + 32 = 68°F</span></p>
+            </div>
+
+            <div class="conversion-formula">
+              <h3>Fahrenheit to Celsius</h3>
+              <p><span class="formula">°C = (°F - 32) × 5/9</span></p>
+              <p>Example: Convert 68°F to Celsius</p>
+              <p><span class="formula">(68 - 32) × 5/9 = 20°C</span></p>
+            </div>
+
+            <div class="conversion-formula">
+              <h3>Celsius to Kelvin</h3>
+              <p><span class="formula">K = °C + 273.15</span></p>
+              <p>Example: Convert 25°C to Kelvin</p>
+              <p><span class="formula">25 + 273.15 = 298.15K</span></p>
+            </div>
+          </div>
+
+          <div class="common-temps">
+            <div class="temp-card">
+              <h4>Human Body</h4>
+              <p class="temp-value">37°C / 98.6°F</p>
+            </div>
+            <div class="temp-card">
+              <h4>Room Temp</h4>
+              <p class="temp-value">20°C / 68°F</p>
+            </div>
+            <div class="temp-card">
+              <h4>Freezing Point</h4>
+              <p class="temp-value">0°C / 32°F</p>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <section class="seo-content">
+        <h2>Understanding Temperature Conversion</h2>
+
+        <p>
+          Temperature conversion is essential for scientific research, cooking,
+          weather forecasting, and everyday life. Our free online temperature
+          converter makes it easy to convert between Celsius, Fahrenheit, and
+          Kelvin scales with just a few clicks.
+        </p>
+
+        <h3>What is Celsius?</h3>
+        <p>
+          The Celsius scale (°C) is a temperature scale where 0°C represents the
+          freezing point of water and 100°C represents the boiling point of
+          water at standard atmospheric pressure. It is widely used around the
+          world and is the standard unit of temperature measurement in most
+          countries.
+        </p>
+
+        <h3>What is Fahrenheit?</h3>
+        <p>
+          The Fahrenheit scale (°F) is a temperature scale where 32°F represents
+          the freezing point of water and 212°F represents the boiling point of
+          water at standard atmospheric pressure. It is primarily used in the
+          United States and a few other countries.
+        </p>
+
+        <h3>What is Kelvin?</h3>
+        <p>
+          The Kelvin scale (K) is an absolute temperature scale where 0K
+          represents absolute zero, the theoretical point where all molecular
+          motion ceases. It is widely used in scientific contexts and is the SI
+          base unit of temperature.
+        </p>
+
+        <h3>Why Use Our Temperature Converter?</h3>
+        <p>Our temperature conversion tool offers several advantages:</p>
+        <ul>
+          <li>
+            <strong>Accuracy:</strong> Precise calculations to ensure reliable
+            results
+          </li>
+          <li>
+            <strong>Speed:</strong> Instant conversions without manual
+            calculations
+          </li>
+          <li>
+            <strong>Convenience:</strong> Accessible from any device with
+            internet connection
+          </li>
+          <li><strong>Free:</strong> No cost or registration required</li>
+          <li>
+            <strong>Educational:</strong> Learn about temperature scales and
+            conversion formulas
+          </li>
+        </ul>
+
+        <h3>Common Temperature Conversion Questions</h3>
+        <p>
+          <strong>How to convert Celsius to Fahrenheit?</strong> Multiply the
+          Celsius temperature by 9/5 and add 32. For example, 20°C is (20 × 9/5)
+          + 32 = 68°F.
+        </p>
+        <p>
+          <strong>What is 100°F in Celsius?</strong> 100°F is equal to 37.78°C.
+          Use our converter to verify this calculation!
+        </p>
+        <p>
+          <strong>What is absolute zero in different scales?</strong> Absolute
+          zero is 0K, which is -273.15°C or -459.67°F.
+        </p>
+      </section>
+
+      <footer class="footer">
+        <p id="copyright">
+          Temperature Converter Pro &copy; <span id="current-year">2025</span> |
+          Free Online Temperature Conversion Tool |
+          <a
+            href="https://github.com/farrukh-ali-khan/roadmap-temperature-converter"
+            target="_blank"
+            >GitHub Repository</a
+          >
+        </p>
+      </footer>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
