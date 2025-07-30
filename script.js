@@ -8,23 +8,24 @@ document.addEventListener("DOMContentLoaded", function () {
   const toUnitBox = document.getElementById("to-unit-box");
   const yearElement = document.getElementById("current-year");
 
-  // Set current year in footer (if present)
+  // Set current year in footer (if element exists)
   if (yearElement) {
     yearElement.textContent = new Date().getFullYear();
   }
 
-  // Function to check if all fields are filled and trigger auto-convert
+  // Check if all fields are valid and auto-convert
   function checkFields() {
     const tempValue = temperatureInput.value.trim();
     const fromValue = fromUnit.value;
     const toValue = toUnit.value;
 
-    // Update unit box active styles
+    // Highlight active select boxes
     fromUnitBox.classList.toggle("active", fromValue !== "");
     toUnitBox.classList.toggle("active", toValue !== "");
 
+    // Only convert if all fields are filled
     if (tempValue !== "" && fromValue !== "" && toValue !== "") {
-      convertTemperature(); // Auto-convert when all fields are valid
+      convertTemperature();
     } else {
       resultElement.textContent =
         "Please enter a valid temperature and select units.";
@@ -42,10 +43,9 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    let result;
     let celsius;
 
-    // Step 1: Convert input to Celsius
+    // Convert to Celsius
     switch (from) {
       case "celsius":
         celsius = inputValue;
@@ -57,11 +57,13 @@ document.addEventListener("DOMContentLoaded", function () {
         celsius = inputValue - 273.15;
         break;
       default:
-        resultElement.textContent = "Please select both units.";
+        resultElement.textContent = "Invalid from-unit.";
         return;
     }
 
-    // Step 2: Convert Celsius to target unit
+    let result;
+
+    // Convert from Celsius to target unit
     switch (to) {
       case "celsius":
         result = celsius;
@@ -73,32 +75,32 @@ document.addEventListener("DOMContentLoaded", function () {
         result = celsius + 273.15;
         break;
       default:
-        resultElement.textContent = "Please select both units.";
+        resultElement.textContent = "Invalid to-unit.";
         return;
     }
 
-    // Format and show result
     const fromText =
       fromUnit.options[fromUnit.selectedIndex].text.split(" ")[0];
     const toText = toUnit.options[toUnit.selectedIndex].text.split(" ")[0];
+
     resultElement.innerHTML = `${inputValue} ${fromText} = <strong>${result.toFixed(
       2
     )} ${toText}</strong>`;
   }
 
-  // Event listeners for auto conversion
+  // Listen to input changes for auto conversion
   temperatureInput.addEventListener("input", checkFields);
   fromUnit.addEventListener("change", checkFields);
   toUnit.addEventListener("change", checkFields);
 
-  // Optional: Trigger conversion when pressing Enter
+  // Optional: Allow conversion on Enter key
   temperatureInput.addEventListener("keyup", function (event) {
     if (event.key === "Enter") {
       checkFields();
     }
   });
 
-  // Initialize default value (if needed)
+  // Set default temperature and run first conversion
   temperatureInput.value = "34";
   checkFields();
 });
