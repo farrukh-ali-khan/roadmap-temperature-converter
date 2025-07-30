@@ -24,15 +24,18 @@ document.addEventListener("DOMContentLoaded", function () {
       convertBtn.disabled = true;
     }
 
-    // Update active state for unit boxes
+    // Update unit box active styles
     fromUnitBox.classList.toggle("active", fromValue !== "");
     toUnitBox.classList.toggle("active", toValue !== "");
-  }
 
-  // Event listeners
-  temperatureInput.addEventListener("input", checkFields);
-  fromUnit.addEventListener("change", checkFields);
-  toUnit.addEventListener("change", checkFields);
+    // If all fields are valid, auto-convert
+    if (!convertBtn.disabled) {
+      convertTemperature(); // Automatically convert
+    } else {
+      resultElement.textContent =
+        "Please enter a valid temperature and select units.";
+    }
+  }
 
   // Conversion function
   function convertTemperature() {
@@ -46,9 +49,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     let result;
-
-    // Convert to Celsius first
     let celsius;
+
+    // Convert input to Celsius
     switch (from) {
       case "celsius":
         celsius = inputValue;
@@ -64,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    // Convert from Celsius to target unit
+    // Convert Celsius to target unit
     switch (to) {
       case "celsius":
         result = celsius;
@@ -80,7 +83,6 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    // Update result text with units
     const fromText =
       fromUnit.options[fromUnit.selectedIndex].text.split(" ")[0];
     const toText = toUnit.options[toUnit.selectedIndex].text.split(" ")[0];
@@ -89,18 +91,20 @@ document.addEventListener("DOMContentLoaded", function () {
     )} ${toText}</strong>`;
   }
 
-  // Convert button event listener
+  // Event listeners
+  temperatureInput.addEventListener("input", checkFields);
+  fromUnit.addEventListener("change", checkFields);
+  toUnit.addEventListener("change", checkFields);
+
   convertBtn.addEventListener("click", convertTemperature);
 
-  // Also allow Enter key to trigger conversion
   temperatureInput.addEventListener("keyup", function (event) {
     if (event.key === "Enter" && !convertBtn.disabled) {
       convertTemperature();
     }
   });
 
-  // Initialize with an example
+  // Initialize with default values
   temperatureInput.value = "34";
   checkFields();
-  convertTemperature();
 });
