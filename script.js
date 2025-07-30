@@ -3,55 +3,49 @@ document.addEventListener("DOMContentLoaded", function () {
   const temperatureInput = document.getElementById("temperature-input");
   const fromUnit = document.getElementById("from-unit");
   const toUnit = document.getElementById("to-unit");
-  const convertBtn = document.getElementById("convert-btn");
   const resultElement = document.getElementById("result");
   const fromUnitBox = document.getElementById("from-unit-box");
   const toUnitBox = document.getElementById("to-unit-box");
   const yearElement = document.getElementById("current-year");
 
-  // Set current year in footer
-  yearElement.textContent = new Date().getFullYear();
+  // Set current year in footer (if present)
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+  }
 
-  // Function to check if all fields are filled
+  // Function to check if all fields are filled and trigger auto-convert
   function checkFields() {
     const tempValue = temperatureInput.value.trim();
     const fromValue = fromUnit.value;
     const toValue = toUnit.value;
 
-    if (tempValue !== "" && fromValue !== "" && toValue !== "") {
-      convertBtn.disabled = false;
-    } else {
-      convertBtn.disabled = true;
-    }
-
     // Update unit box active styles
     fromUnitBox.classList.toggle("active", fromValue !== "");
     toUnitBox.classList.toggle("active", toValue !== "");
 
-    // If all fields are valid, auto-convert
-    if (!convertBtn.disabled) {
-      convertTemperature(); // Automatically convert
+    if (tempValue !== "" && fromValue !== "" && toValue !== "") {
+      convertTemperature(); // Auto-convert when all fields are valid
     } else {
       resultElement.textContent =
         "Please enter a valid temperature and select units.";
     }
   }
 
-  // Conversion function
+  // Conversion logic
   function convertTemperature() {
     const inputValue = parseFloat(temperatureInput.value);
     const from = fromUnit.value;
     const to = toUnit.value;
 
     if (isNaN(inputValue)) {
-      resultElement.textContent = "Please enter a valid number";
+      resultElement.textContent = "Please enter a valid number.";
       return;
     }
 
     let result;
     let celsius;
 
-    // Convert input to Celsius
+    // Step 1: Convert input to Celsius
     switch (from) {
       case "celsius":
         celsius = inputValue;
@@ -63,11 +57,11 @@ document.addEventListener("DOMContentLoaded", function () {
         celsius = inputValue - 273.15;
         break;
       default:
-        resultElement.textContent = "Please select both units";
+        resultElement.textContent = "Please select both units.";
         return;
     }
 
-    // Convert Celsius to target unit
+    // Step 2: Convert Celsius to target unit
     switch (to) {
       case "celsius":
         result = celsius;
@@ -79,10 +73,11 @@ document.addEventListener("DOMContentLoaded", function () {
         result = celsius + 273.15;
         break;
       default:
-        resultElement.textContent = "Please select both units";
+        resultElement.textContent = "Please select both units.";
         return;
     }
 
+    // Format and show result
     const fromText =
       fromUnit.options[fromUnit.selectedIndex].text.split(" ")[0];
     const toText = toUnit.options[toUnit.selectedIndex].text.split(" ")[0];
@@ -91,20 +86,19 @@ document.addEventListener("DOMContentLoaded", function () {
     )} ${toText}</strong>`;
   }
 
-  // Event listeners
+  // Event listeners for auto conversion
   temperatureInput.addEventListener("input", checkFields);
   fromUnit.addEventListener("change", checkFields);
   toUnit.addEventListener("change", checkFields);
 
-  convertBtn.addEventListener("click", convertTemperature);
-
+  // Optional: Trigger conversion when pressing Enter
   temperatureInput.addEventListener("keyup", function (event) {
-    if (event.key === "Enter" && !convertBtn.disabled) {
-      convertTemperature();
+    if (event.key === "Enter") {
+      checkFields();
     }
   });
 
-  // Initialize with default values
+  // Initialize default value (if needed)
   temperatureInput.value = "34";
   checkFields();
 });
